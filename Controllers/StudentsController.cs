@@ -20,18 +20,29 @@ namespace SE4_group_A_backend.Controllers
             _context = context;
         }
 
-        [HttpGet("GetStuds")]
+        // GET: api/Students
+        [HttpGet]
         public async Task<ActionResult<List<Student>>> Get()
         {
             var List = await _context.Students.Select(
                 s => new Student
                 {
                     StudentId = s.StudentId,
-                    StudentName = s.StudentName
+                    StudentName = s.StudentName,
+                    Gender = s.Gender,
+                    ContactNumber = s.ContactNumber,
+                    Address = s.Address,
+                    Dob = s.Dob,
+                    GuardianName = s.GuardianName,
+                    GuardianContact = s.GuardianContact,
+                    AdmissionDate = s.AdmissionDate,
+                    GraduationDate = s.GraduationDate,
+                    CurrentGrade = s.CurrentGrade,
                 }
                 ).ToListAsync();
 
-            if(List.Count < 0)
+
+            if (List.Count < 0)
             {
                 return NotFound();
             }
@@ -41,12 +52,7 @@ namespace SE4_group_A_backend.Controllers
             }
         }
 
-        // GET: api/Students
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
-        {
-            return await _context.Students.ToListAsync();
-        }
+
 
         // GET: api/Students/5
         [HttpGet("{id}")]
