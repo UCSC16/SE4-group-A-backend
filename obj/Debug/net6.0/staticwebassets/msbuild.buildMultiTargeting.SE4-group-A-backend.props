@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SE4-group-A-backend.props" />
+</Project>
