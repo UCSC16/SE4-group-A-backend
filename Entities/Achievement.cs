@@ -13,5 +13,5 @@ public partial class Achievement
 
     public string Description { get; set; } = null!;
 
-    public virtual Student Student { get; set; } = null!;
+    public virtual Student? Student { get; set; } = null!;
 }

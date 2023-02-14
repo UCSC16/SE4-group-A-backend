@@ -27,5 +27,5 @@ public partial class Student
 
     public string CurrentGrade { get; set; } = null!;
 
-    public virtual ICollection<Achievement> Achievements { get; } = new List<Achievement>();
+    public virtual ICollection<Achievement>? Achievements { get; } = new List<Achievement>();
 }
