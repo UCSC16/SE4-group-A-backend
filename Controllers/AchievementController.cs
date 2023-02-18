@@ -71,6 +71,16 @@ namespace SE4_group_A_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Achievement>> PostAchievement(Achievement achievement)
         {
+            var lastAchievement = await _context.Achievements.OrderBy(x=>x.AchievementId).LastOrDefaultAsync();
+            if (lastAchievement != null)
+            {
+                int id = Convert.ToInt32(lastAchievement.AchievementId);
+                achievement.AchievementId = (id + 1).ToString();
+            }
+            else
+            {
+                achievement.AchievementId = "10000";
+            }
             _context.Achievements.Add(achievement);
             try
             {
