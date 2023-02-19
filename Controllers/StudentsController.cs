@@ -78,6 +78,17 @@ namespace SE4_group_A_backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> PostStudent(Student student)
         {
+            var lastStudent = await _context.Students.OrderBy(x=>x.StudentId).LastOrDefaultAsync();
+            if (lastStudent != null)
+            {
+                
+                int id = Convert.ToInt32(lastStudent.StudentId);
+                student.StudentId = (id + 1).ToString();
+            }
+            else
+            {
+                student.StudentId = "10000";
+            }
             _context.Students.Add(student);
             try
             {
